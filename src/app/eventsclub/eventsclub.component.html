@@ -1,1 +1,51 @@
-<p>eventsclub works!</p>
+<div class="blog">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="section_title_container">
+          <div class="section_subtitle">Welcome to SportFIT</div>
+          <div class="section_title">Upcoming Events</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row blog_row">
+      <!-- Boucle Angular sur les événements -->
+      <div class="col-xl-4 col-md-6 blog_col mb-4" *ngFor="let event of events">
+        <div class="blog_post">
+          <div class="blog_post_image">
+           <img [src]="'http://localhost:3000/uploads/' + event.image" alt="event image" class="img-fluid" />
+
+          </div>
+          <div class="blog_post_title mt-3">
+            <a href="#" style="color: #222; font-weight: 600;">{{ event.name }}</a>
+          </div>
+          <div class="blog_post_date">
+            <a href="#" style="color: #f57c00; font-weight: bold;">
+              {{ event.date | date: 'MMM d, y' }}
+            </a>
+          </div>
+          <div class="blog_post_text text-muted">
+            <p><strong>Lieu :</strong> {{ event.location }}</p>
+            <p><strong>Participants max :</strong> {{ event.maxParticipants }}</p>
+          </div>
+          <div class="blog_post_link mt-3">
+<button 
+  class="btn btn-outline-warning btn-sm"
+  (click)="participer(event._id!)"
+  [disabled]="isDisabled(event._id!)">
+  Participer
+</button>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="events.length === 0">
+      <div class="col text-center">
+        <p>Aucun événement disponible.</p>
+      </div>
+    </div>
+  </div>
+</div>
