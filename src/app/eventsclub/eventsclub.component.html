@@ -36,6 +36,12 @@
   [disabled]="isDisabled(event._id!)">
   Participer
 </button>
+<button 
+  class="btn btn-outline-danger btn-sm ms-2"
+  (click)="annuler(event._id!)"
+  [disabled]="!isParticipating(event._id!)">
+  Annuler
+</button>
 </div>
 
         </div>

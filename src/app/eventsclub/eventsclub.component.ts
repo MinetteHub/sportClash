@@ -11,7 +11,8 @@ export class EventsclubComponent implements OnInit {
   events: Event[] = [];
   participantId: string | null = null;
   isLoggedIn = false;
-  disabledEvents: Set<string> = new Set();
+  disabledEvents: Set<string> = new Set(); // Bouton "Participer"
+  participatedEvents: Set<string> = new Set(); // Suivi des participations
 
   constructor(private eventService: EventserviceService) {}
 
@@ -37,9 +38,24 @@ export class EventsclubComponent implements OnInit {
 
     console.log('Participer à', eventId, 'par', this.participantId);
     this.disabledEvents.add(eventId);
+    this.participatedEvents.add(eventId); // Ajout au suivi des participations
+  }
+
+  annuler(eventId: string) {
+    if (!this.isLoggedIn) {
+      alert('Veuillez vous connecter pour annuler votre participation.');
+      return;
+    }
+
+    console.log('Annulation de la participation à', eventId);
+    this.participatedEvents.delete(eventId);
   }
 
   isDisabled(eventId: string): boolean {
     return this.disabledEvents.has(eventId);
+  }
+
+  isParticipating(eventId: string): boolean {
+    return this.participatedEvents.has(eventId);
   }
 }
