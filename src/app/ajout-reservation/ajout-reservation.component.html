@@ -1,0 +1,67 @@
+<!-- Container principal sous la navbar, avec scroll si besoin -->
+<div style="height: 100px;"></div>
+<div class="container bg-light border rounded p-3 shadow mt-2" style="max-height: 80vh; overflow-y: auto;">
+  
+  <h4 class="sticky-top bg-light py-2">Réserver un équipement</h4>
+
+  <form [formGroup]="reservationForm">
+    <!-- Champs cachés -->
+    <input type="hidden" formControlName="equipmentId">
+    <input type="hidden" formControlName="reservedBy">
+
+    <!-- Event ID -->
+    <div class="mb-3">
+      <label class="form-label">Event ID</label>
+      <div class="input-group">
+        <span class="input-group-text">#</span>
+        <input type="text" formControlName="eventId" class="form-control" />
+      </div>
+      <div class="alert alert-danger mt-1" *ngIf="reservationForm.get('eventId')?.invalid && reservationForm.get('eventId')?.touched">
+        Event ID is required
+      </div>
+    </div>
+
+    <!-- Quantity -->
+    <div class="mb-3">
+      <label class="form-label">Quantity</label>
+      <input type="number" formControlName="quantity" class="form-control" />
+      <div class="alert alert-danger mt-1" *ngIf="reservationForm.get('quantity')?.invalid && reservationForm.get('quantity')?.touched">
+        Must be at least 1
+      </div>
+    </div>
+
+    <!-- Reservation Date -->
+    <div class="mb-3">
+      <label class="form-label">Reservation Date</label>
+      <input type="date" formControlName="reservationDate" class="form-control" />
+      <div class="alert alert-danger mt-1" *ngIf="reservationForm.get('reservationDate')?.invalid && reservationForm.get('reservationDate')?.touched">
+        Date is required
+      </div>
+    </div>
+
+<!-- Status -->
+<div class="mb-3">
+  <label class="form-label">Status</label>
+  <select formControlName="status" class="form-control">
+    <option value="" disabled selected>Choisissez un statut</option>
+    <option value="PENDING">PENDING</option>
+    <option value="CONFIRMED">CONFIRMED</option>
+    <option value="CANCELLED">CANCELLED</option>
+  </select>
+  <div class="alert alert-danger mt-1" *ngIf="reservationForm.get('status')?.invalid && reservationForm.get('status')?.touched">
+    Statut requis
+  </div>
+</div>
+
+    <!-- Infos Equipment ID et ReservedBy -->
+    <p class="text-muted small">Equipment ID utilisé : {{ reservationForm.get('equipmentId')?.value }}</p>
+    <p class="text-muted small">Réservé par l'utilisateur : {{ reservationForm.get('reservedBy')?.value }}</p>
+
+    <!-- Submit -->
+    <div class="d-grid">
+      <button class="btn btn-primary mt-3" (click)="addReservation()" [disabled]="reservationForm.invalid">
+        Reserve Equipment
+      </button>
+    </div>
+  </form>
+</div>

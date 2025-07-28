@@ -3,6 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { EquipmentsComponent } from './equipments/equipments.component';
 import { BlogComponent } from './blog/blog.component';
+import { AjoutReservationComponent } from './ajout-reservation/ajout-reservation.component';
+import { MyhomeComponent } from './myhome/myhome.component';
+import { UpdateReservationComponent } from './update-reservation/update-reservation.component';
+
 
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -20,12 +24,8 @@ const routes: Routes = [
   { path: 'reclamation', component: ReclamationComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '' }
+
 ];
-
-
-
-
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

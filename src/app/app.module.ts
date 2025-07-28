@@ -20,6 +20,7 @@ import { ReclamationComponent } from './reclamation/reclamation.component';
 import { ProfileComponent } from './profile/profile.component'
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +38,10 @@ import { ProfileComponent } from './profile/profile.component'
     VerifyEmailComponent,
     ReclamationComponent,
     ProfileComponent
+
+    AjoutReservationComponent,
+    MyhomeComponent,
+    UpdateReservationComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +49,7 @@ import { ProfileComponent } from './profile/profile.component'
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
