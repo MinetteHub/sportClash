@@ -1,0 +1,98 @@
+<div class="container-fluid" style="background-color: #f8f9fa; min-height: 100vh; padding-top: 120px; padding-bottom: 40px;">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <!-- Header -->
+        <div class="d-flex justify-content-between align-items-center mb-4 p-3 bg-white rounded shadow-sm">
+          <div>
+            <h2 class="mb-1 text-primary">📋 Mes Réclamations</h2>
+            <small class="text-muted">Gérez vos réclamations et suivez leur statut</small>
+          </div>
+          <button type="button" class="btn" [ngClass]="showForm ? 'btn-outline-secondary' : 'btn-primary'" (click)="toggleForm()">
+            <i class="fas" [ngClass]="showForm ? 'fa-times' : 'fa-plus'" style="margin-right: 8px;"></i>
+            {{ showForm ? 'Annuler' : 'Nouvelle Réclamation' }}
+          </button>
+        </div>
+
+        <!-- Formulaire d'ajout -->
+        <div *ngIf="showForm" class="card mb-4 shadow-sm border-0">
+          <div class="card-header bg-primary text-white">
+            <h5 class="mb-0"><i class="fas fa-edit me-2"></i>Nouvelle Réclamation</h5>
+          </div>
+          <div class="card-body p-4">
+            <form [formGroup]="reclamationForm" (ngSubmit)="onSubmit()">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label class="form-label fw-bold">👤 Utilisateur</label>
+                  <input type="text" class="form-control" formControlName="username" readonly style="background-color: #e9ecef;">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="form-label fw-bold">📝 Sujet</label>
+                  <input type="text" class="form-control" formControlName="sujet" placeholder="Ex: Problème de connexion">
+                  <div *ngIf="reclamationForm.get('sujet')?.invalid && reclamationForm.get('sujet')?.touched" class="text-danger mt-1">
+                    <small><i class="fas fa-exclamation-circle"></i> Sujet requis</small>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="mb-3">
+                <label class="form-label fw-bold">💬 Description détaillée</label>
+                <textarea class="form-control" formControlName="description" rows="4" placeholder="Décrivez votre problème en détail..."></textarea>
+                <div *ngIf="reclamationForm.get('description')?.invalid && reclamationForm.get('description')?.touched" class="text-danger mt-1">
+                  <small><i class="fas fa-exclamation-circle"></i> Description requise</small>
+                </div>
+              </div>
+              
+              <div *ngIf="error" class="alert alert-danger d-flex align-items-center">
+                <i class="fas fa-exclamation-triangle me-2"></i>{{ error }}
+              </div>
+              <div *ngIf="success" class="alert alert-success d-flex align-items-center">
+                <i class="fas fa-check-circle me-2"></i>{{ success }}
+              </div>
+              
+              <button type="submit" class="btn btn-primary btn-lg" [disabled]="loading || reclamationForm.invalid">
+                <i class="fas" [ngClass]="loading ? 'fa-spinner fa-spin' : 'fa-paper-plane'" style="margin-right: 8px;"></i>
+                {{ loading ? 'Envoi en cours...' : 'Envoyer la réclamation' }}
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Liste des réclamations -->
+        <div class="card shadow-sm border-0">
+          <div class="card-header bg-light">
+            <h5 class="mb-0"><i class="fas fa-history me-2"></i>Historique ({{ reclamations.length }})</h5>
+          </div>
+          <div class="card-body p-0">
+            <div *ngIf="reclamations.length === 0" class="text-center py-5">
+              <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+              <h5 class="text-muted">Aucune réclamation</h5>
+              <p class="text-muted">Vous n'avez pas encore soumis de réclamation</p>
+            </div>
+            
+            <div *ngFor="let reclamation of reclamations; let i = index" class="border-bottom">
+              <div class="p-4 hover-bg" style="transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='white'">
+                <div class="d-flex justify-content-between align-items-start">
+                  <div class="flex-grow-1">
+                    <div class="d-flex align-items-center mb-2">
+                      <span class="badge me-2 fs-6" [class]="getStatusClass(reclamation.status)">
+                        {{ getStatusText(reclamation.status) }}
+                      </span>
+                      <small class="text-muted">#{{ i + 1 }}</small>
+                    </div>
+                    <h6 class="mb-2 text-dark">📋 {{ reclamation.sujet }}</h6>
+                    <p class="text-muted mb-0" style="line-height: 1.6;">{{ reclamation.description }}</p>
+                  </div>
+                  <div class="text-end ms-3">
+                    <i class="fas fa-user-circle text-muted"></i>
+                    <small class="text-muted d-block">{{ reclamation.username }}</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

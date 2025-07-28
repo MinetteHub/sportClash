@@ -1,0 +1,83 @@
+<div class="container-fluid" style="background-color: white; min-height: 100vh; padding-top: 120px;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-5 col-md-7">
+        <!-- Header -->
+        <div class="text-center mb-4">
+          <div class="login-icon mb-3">
+            <i class="fas fa-sign-in-alt fa-3x" style="color: #ff6b35;"></i>
+          </div>
+          <h2 class="mb-2" style="color: #ff6b35;">Bienvenue !</h2>
+          <p class="text-muted">Connectez-vous à votre compte SportClash</p>
+        </div>
+
+        <!-- Login Card -->
+        <div class="card shadow-lg border-0" style="border-radius: 15px;">
+          <div class="card-body p-5">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+              <div class="mb-4">
+                <label class="form-label fw-bold text-dark">
+                  <i class="fas fa-envelope me-2" style="color: #ff6b35;"></i>Adresse email
+                </label>
+                <input type="email" class="form-control form-control-lg" 
+                       formControlName="email" 
+                       placeholder="exemple@email.com"
+                       style="border-radius: 10px; border: 2px solid #e9ecef;"
+                       onfocus="this.style.borderColor='#ff6b35'; this.style.boxShadow='0 0 0 0.2rem rgba(255, 107, 53, 0.25)'"
+                       onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
+                <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-danger mt-2">
+                  <small><i class="fas fa-exclamation-circle me-1"></i>Email valide requis</small>
+                </div>
+              </div>
+              
+              <div class="mb-4">
+                <label class="form-label fw-bold text-dark">
+                  <i class="fas fa-lock me-2" style="color: #ff6b35;"></i>Mot de passe
+                </label>
+                <input type="password" class="form-control form-control-lg" 
+                       formControlName="password" 
+                       placeholder="Votre mot de passe"
+                       style="border-radius: 10px; border: 2px solid #e9ecef;"
+                       onfocus="this.style.borderColor='#ff6b35'; this.style.boxShadow='0 0 0 0.2rem rgba(255, 107, 53, 0.25)'"
+                       onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
+                <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-danger mt-2">
+                  <small><i class="fas fa-exclamation-circle me-1"></i>Mot de passe requis</small>
+                </div>
+              </div>
+              
+              <div *ngIf="error" class="alert alert-danger d-flex align-items-center mb-4" style="border-radius: 10px;">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                <div>{{ error }}</div>
+              </div>
+              
+              <button type="submit" 
+                      class="btn btn-lg w-100 mb-3" 
+                      [disabled]="loading || loginForm.invalid"
+                      style="border-radius: 10px; background: linear-gradient(45deg, #ff6b35, #f7931e); border: none; padding: 12px; color: white;">
+                <i class="fas" [ngClass]="loading ? 'fa-spinner fa-spin' : 'fa-sign-in-alt'" style="margin-right: 8px;"></i>
+                {{ loading ? 'Connexion en cours...' : 'Se connecter' }}
+              </button>
+            </form>
+            
+            <hr class="my-4">
+            
+            <div class="text-center">
+              <p class="text-muted mb-2">Pas encore de compte ?</p>
+              <a routerLink="/register" class="btn" style="border-radius: 10px; border: 2px solid #ff6b35; color: #ff6b35;">
+                <i class="fas fa-user-plus me-2"></i>Créer un compte
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="text-center mt-4">
+          <small class="text-muted">
+            <i class="fas fa-shield-alt me-1"></i>
+            Vos données sont sécurisées
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

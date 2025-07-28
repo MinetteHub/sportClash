@@ -8,15 +8,23 @@ import { MyhomeComponent } from './myhome/myhome.component';
 import { UpdateReservationComponent } from './update-reservation/update-reservation.component';
 
 
+import { RegisterComponent } from './auth/register/register.component';
+import { LoginComponent } from './auth/login/login.component';
+import { ReclamationComponent } from './reclamation/reclamation.component';
+import { ProfileComponent } from './profile/profile.component';
+import { AuthGuard } from './services/auth.guard';
+import { VerifyEmailComponent } from './auth/verify-email/verify-email.component';
+
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path : 'home', component: HomeComponent},
-  { path : 'equipments', component: EquipmentsComponent},
-  { path : 'blog', component: BlogComponent},
-  { path : 'ajout-reservation', component: AjoutReservationComponent},
-  { path : 'myhome', component: MyhomeComponent},
-  { path : 'update-reservation/:id', component: UpdateReservationComponent},
-  
+  { path: 'equipments', component: EquipmentsComponent },
+  { path: 'blog', component: BlogComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'reclamation', component: ReclamationComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: '**', redirectTo: '' }
+
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

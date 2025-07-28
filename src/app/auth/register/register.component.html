@@ -1,0 +1,168 @@
+<div class="container-fluid" style="background-color: white; min-height: 100vh; padding-top: 120px; padding-bottom: 40px;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10">
+        <!-- Header -->
+        <div class="text-center mb-4">
+          <div class="register-icon mb-3">
+            <i class="fas fa-user-plus fa-3x" style="color: #ff6b35;"></i>
+          </div>
+          <h2 class="mb-2" style="color: #ff6b35;">Rejoignez SportClash !</h2>
+          <p class="text-muted">Créez votre compte en quelques étapes</p>
+        </div>
+
+        <!-- Register Card -->
+        <div class="card shadow-lg border-0" style="border-radius: 15px;">
+          <div class="card-body p-5">
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+              <!-- Nom et Prénom -->
+              <div class="row mb-4">
+                <div class="col-md-6">
+                  <label class="form-label fw-bold text-dark">
+                    <i class="fas fa-user me-2" style="color: #ff6b35;"></i>Prénom
+                  </label>
+                  <input type="text" class="form-control form-control-lg" 
+                         formControlName="firstname" 
+                         placeholder="Votre prénom"
+                         style="border-radius: 10px; border: 2px solid #e9ecef;">
+                  <div *ngIf="registerForm.get('firstname')?.invalid && registerForm.get('firstname')?.touched" class="text-danger mt-1">
+                    <small><i class="fas fa-exclamation-circle me-1"></i>
+                      <span *ngIf="registerForm.get('firstname')?.errors?.['required']">Prénom requis</span>
+                      <span *ngIf="registerForm.get('firstname')?.errors?.['pattern']">Prénom invalide</span>
+                    </small>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-bold text-dark">
+                    <i class="fas fa-user me-2" style="color: #ff6b35;"></i>Nom
+                  </label>
+                  <input type="text" class="form-control form-control-lg" 
+                         formControlName="lastname" 
+                         placeholder="Votre nom"
+                         style="border-radius: 10px; border: 2px solid #e9ecef;">
+                  <div *ngIf="registerForm.get('lastname')?.invalid && registerForm.get('lastname')?.touched" class="text-danger mt-1">
+                    <small><i class="fas fa-exclamation-circle me-1"></i>
+                      <span *ngIf="registerForm.get('lastname')?.errors?.['required']">Nom requis</span>
+                      <span *ngIf="registerForm.get('lastname')?.errors?.['pattern']">Nom invalide</span>
+                    </small>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Username et Email -->
+              <div class="row mb-4">
+                <div class="col-md-6">
+                  <label class="form-label fw-bold text-dark">
+                    <i class="fas fa-at me-2" style="color: #ff6b35;"></i>Nom d'utilisateur
+                  </label>
+                  <input type="text" class="form-control form-control-lg" 
+                         formControlName="username" 
+                         placeholder="@username"
+                         style="border-radius: 10px; border: 2px solid #e9ecef;">
+                  <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched" class="text-danger mt-1">
+                    <small><i class="fas fa-exclamation-circle me-1"></i>
+                      <span *ngIf="registerForm.get('username')?.errors?.['required']">Nom d'utilisateur requis</span>
+                      <span *ngIf="registerForm.get('username')?.errors?.['pattern']">Nom d'utilisateur invalide</span>
+                    </small>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-bold text-dark">
+                    <i class="fas fa-envelope me-2" style="color: #ff6b35;"></i>Email
+                  </label>
+                  <input type="email" class="form-control form-control-lg" 
+                         formControlName="email" 
+                         placeholder="exemple@email.com"
+                         style="border-radius: 10px; border: 2px solid #e9ecef;">
+                  <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="text-danger mt-1">
+                    <small><i class="fas fa-exclamation-circle me-1"></i>Email valide requis</small>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Téléphone et Adresse -->
+              <div class="row mb-4">
+                <div class="col-md-6">
+                  <label class="form-label fw-bold text-dark">
+                    <i class="fas fa-phone me-2" style="color: #ff6b35;"></i>Téléphone
+                  </label>
+                  <input type="tel" class="form-control form-control-lg" 
+                         formControlName="phone" 
+                         placeholder="12345678" 
+                         maxlength="8"
+                         style="border-radius: 10px; border: 2px solid #e9ecef;">
+                  <div *ngIf="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched" class="text-danger mt-1">
+                    <small><i class="fas fa-exclamation-circle me-1"></i>
+                      <span *ngIf="registerForm.get('phone')?.errors?.['required']">Téléphone requis</span>
+                      <span *ngIf="registerForm.get('phone')?.errors?.['pattern']">8 chiffres exactement</span>
+                    </small>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-bold text-dark">
+                    <i class="fas fa-map-marker-alt me-2" style="color: #ff6b35;"></i>Adresse
+                  </label>
+                  <input type="text" class="form-control form-control-lg" 
+                         formControlName="adresse" 
+                         placeholder="Votre adresse"
+                         style="border-radius: 10px; border: 2px solid #e9ecef;">
+                  <div *ngIf="registerForm.get('adresse')?.invalid && registerForm.get('adresse')?.touched" class="text-danger mt-1">
+                    <small><i class="fas fa-exclamation-circle me-1"></i>Adresse requise</small>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Mot de passe -->
+              <div class="mb-4">
+                <label class="form-label fw-bold text-dark">
+                  <i class="fas fa-lock me-2" style="color: #ff6b35;"></i>Mot de passe
+                </label>
+                <input type="password" class="form-control form-control-lg" 
+                       formControlName="password" 
+                       placeholder="Minimum 8 caractères avec lettres et chiffres"
+                       style="border-radius: 10px; border: 2px solid #e9ecef;">
+                <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="text-danger mt-1">
+                  <small><i class="fas fa-exclamation-circle me-1"></i>
+                    <span *ngIf="registerForm.get('password')?.errors?.['required']">Mot de passe requis</span>
+                    <span *ngIf="registerForm.get('password')?.errors?.['minlength']">Minimum 8 caractères</span>
+                    <span *ngIf="registerForm.get('password')?.errors?.['pattern']">Lettres et chiffres requis</span>
+                  </small>
+                </div>
+              </div>
+              
+              <div *ngIf="error" class="alert alert-danger d-flex align-items-center mb-4" style="border-radius: 10px;">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                <div>{{ error }}</div>
+              </div>
+              
+              <button type="submit" 
+                      class="btn btn-lg w-100 mb-3" 
+                      [disabled]="loading || registerForm.invalid"
+                      style="border-radius: 10px; background: linear-gradient(45deg, #ff6b35, #f7931e); border: none; padding: 12px; color: white;">
+                <i class="fas" [ngClass]="loading ? 'fa-spinner fa-spin' : 'fa-user-plus'" style="margin-right: 8px;"></i>
+                {{ loading ? 'Inscription en cours...' : 'Créer mon compte' }}
+              </button>
+            </form>
+            
+            <hr class="my-4">
+            
+            <div class="text-center">
+              <p class="text-muted mb-2">Déjà un compte ?</p>
+              <a routerLink="/login" class="btn" style="border-radius: 10px; border: 2px solid #ff6b35; color: #ff6b35;">
+                <i class="fas fa-sign-in-alt me-2"></i>Se connecter
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="text-center mt-4">
+          <small class="text-muted">
+            <i class="fas fa-shield-alt me-1"></i>
+            Inscription sécurisée et gratuite
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
