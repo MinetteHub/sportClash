@@ -1,0 +1,113 @@
+<div class="container-fluid" style="background-color: #f8f9fa; min-height: 100vh; padding-top: 120px; padding-bottom: 40px;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <!-- Header -->
+        <div class="text-center mb-4">
+          <h2 class="text-primary">👤 Mon Profil</h2>
+          <p class="text-muted">Informations de votre compte</p>
+        </div>
+
+        <!-- Loading -->
+        <div *ngIf="loading" class="text-center py-5">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Chargement...</span>
+          </div>
+        </div>
+
+        <!-- Profile Card -->
+        <div *ngIf="!loading && currentUser" class="card shadow-sm border-0">
+          <div class="card-header bg-primary text-white text-center py-4">
+            <div class="profile-avatar mb-3">
+              <div class="avatar-circle bg-white text-primary d-inline-flex align-items-center justify-content-center" 
+                   style="width: 80px; height: 80px; border-radius: 50%; font-size: 2rem; font-weight: bold;">
+                {{ (currentUser.firstname?.charAt(0) || '') + (currentUser.lastname?.charAt(0) || '') }}
+              </div>
+            </div>
+            <h4 class="mb-1">{{ currentUser.firstname }} {{ currentUser.lastname }}</h4>
+            <p class="mb-0 opacity-75">@{{ currentUser.username }}</p>
+          </div>
+          
+          <div class="card-body p-4">
+            <div class="row">
+              <!-- Informations personnelles -->
+              <div class="col-md-6 mb-4">
+                <h6 class="text-primary mb-3">📝 Informations personnelles</h6>
+                
+                <div class="info-item mb-3">
+                  <label class="form-label text-muted small">Prénom</label>
+                  <div class="fw-bold">{{ currentUser.firstname }}</div>
+                </div>
+                
+                <div class="info-item mb-3">
+                  <label class="form-label text-muted small">Nom</label>
+                  <div class="fw-bold">{{ currentUser.lastname }}</div>
+                </div>
+                
+                <div class="info-item mb-3">
+                  <label class="form-label text-muted small">Nom d'utilisateur</label>
+                  <div class="fw-bold">{{ currentUser.username }}</div>
+                </div>
+              </div>
+              
+              <!-- Contact -->
+              <div class="col-md-6 mb-4">
+                <h6 class="text-primary mb-3">📞 Contact</h6>
+                
+                <div class="info-item mb-3">
+                  <label class="form-label text-muted small">Email</label>
+                  <div class="fw-bold">
+                    <i class="fas fa-envelope text-muted me-2"></i>
+                    {{ currentUser.email }}
+                  </div>
+                </div>
+                
+                <div class="info-item mb-3">
+                  <label class="form-label text-muted small">Téléphone</label>
+                  <div class="fw-bold">
+                    <i class="fas fa-phone text-muted me-2"></i>
+                    {{ currentUser.phone }}
+                  </div>
+                </div>
+                
+                <div class="info-item mb-3">
+                  <label class="form-label text-muted small">Adresse</label>
+                  <div class="fw-bold">
+                    <i class="fas fa-map-marker-alt text-muted me-2"></i>
+                    {{ currentUser.adresse }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Rôle -->
+            <div class="row">
+              <div class="col-12">
+                <div class="bg-light p-3 rounded">
+                  <h6 class="text-primary mb-2">🎭 Rôle</h6>
+                  <span class="badge" [class]="currentUser.role === 'admin' ? 'bg-danger' : 'bg-primary'" style="font-size: 0.9rem;">
+                    {{ currentUser.role === 'admin' ? 'Administrateur' : 'Utilisateur' }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card-footer bg-light text-center">
+            <small class="text-muted">
+              <i class="fas fa-info-circle me-1"></i>
+              Pour modifier vos informations, contactez l'administrateur
+            </small>
+          </div>
+        </div>
+        
+        <!-- No user -->
+        <div *ngIf="!loading && !currentUser" class="text-center py-5">
+          <i class="fas fa-user-slash fa-3x text-muted mb-3"></i>
+          <h5 class="text-muted">Aucune information utilisateur</h5>
+          <a routerLink="/login" class="btn btn-primary">Se connecter</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

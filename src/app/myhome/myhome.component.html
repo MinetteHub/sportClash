@@ -1,0 +1,70 @@
+<h2 class="page-title">Mes Réservations</h2>
+
+<!-- Tableau des réservations -->
+<table *ngIf="reservations.length > 0" style="width: 100%; border-collapse: collapse; margin: 0 auto; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+  <thead>
+    <tr style="background-color: #333; color: white; text-align: center;">
+      <th style="padding: 12px; border: 1px solid #ddd;">Equipment ID</th>
+      <th style="padding: 12px; border: 1px solid #ddd;">Event ID</th>
+      <th style="padding: 12px; border: 1px solid #ddd;">Reserved By</th>
+      <th style="padding: 12px; border: 1px solid #ddd;">Quantity</th>
+      <th style="padding: 12px; border: 1px solid #ddd;">Date</th>
+      <th style="padding: 12px; border: 1px solid #ddd;">Status</th>
+      <th style="padding: 12px; border: 1px solid #ddd;">Actions</th> <!-- ✅ Ajout de la colonne -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let r of reservations" style="text-align: center;">
+      <td style="background-color: #f9f9f9; padding: 12px; border: 1px solid #ddd;">{{ r.equipmentId }}</td>
+      <td style="background-color: #f9f9f9; padding: 12px; border: 1px solid #ddd;">{{ r.eventId }}</td>
+      <td style="background-color: #f9f9f9; padding: 12px; border: 1px solid #ddd;">{{ r.reservedBy }}</td>
+      <td style="background-color: #f9f9f9; padding: 12px; border: 1px solid #ddd;">{{ r.quantity }}</td>
+      <td style="background-color: #f9f9f9; padding: 12px; border: 1px solid #ddd;">{{ r.reservationDate | date: 'shortDate' }}</td>
+      <td style="background-color: #f9f9f9; padding: 12px; border: 1px solid #ddd;">{{ r.status }}</td>
+      <td style="background-color: #f9f9f9; padding: 12px; border: 1px solid #ddd;">
+        <!-- ✅ Bouton de mise à jour -->
+<button class="btn btn-warning btn-sm"
+        [routerLink]="['/update-reservation', r._id]">
+  Modifier
+</button>
+<button 
+  class="btn btn-danger btn-sm" 
+  (click)="deleteReservation(r._id, r.quantity, r.equipmentId)">
+  Supprimer
+</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Message si aucune réservation n'est trouvée -->
+<p *ngIf="reservations.length === 0" style="text-align: center; font-size: 1.2rem; color: #888; margin-top: 20px;">
+  Aucune réservation trouvée.
+</p>
+
+<!-- Styles pour le tableau et l'apparence générale -->
+<style>
+  .page-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+
+  /* Survol des lignes */
+  .reservation-table tr:hover {
+    background-color: #ff8c00;
+    color: white;
+  }
+
+  .reservation-table td:hover {
+    background-color: #ff8c00;
+    color: white;
+  }
+
+  /* Lignes paires avec un gris légèrement plus clair */
+  .reservation-table tr:nth-child(even) td {
+    background-color: #f2f2f2;
+  }
+</style>

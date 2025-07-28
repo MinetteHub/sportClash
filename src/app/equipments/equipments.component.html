@@ -1,1 +1,64 @@
-<p>equipments works!</p>
+<div class="blog">
+  <div class="container">
+    <!-- Titre de la section -->
+    <div class="row">
+      <div class="col text-center mb-4">
+        <h2 class="fw-bold text-dark">Nos Equipments</h2>
+      </div>
+    </div>
+
+    <div class="row blog_row">
+      <!-- Boucle Angular sur les équipements -->
+      <div class="col-xl-4 col-md-6 blog_col mb-4" *ngFor="let equipment of equipments">
+        <div class="blog_post shadow-sm rounded p-3 h-100 border">
+          
+          <!-- Nom de l'équipement -->
+          <div class="blog_post_title mt-2 mb-3">
+            <h5 class="fw-bold text-dark">{{ equipment.name }}</h5>
+          </div>
+
+          <!-- Description -->
+          <div class="blog_post_text text-muted small">
+            <p><strong>Description :</strong> {{ equipment.description }}</p>
+            <p><strong>Quantité totale :</strong> {{ equipment.quantity }}</p>
+
+            <!-- Disponibilité avec badge stylisé -->
+            <p>
+              <strong>Disponible :</strong>
+              <span 
+                class="fw-semibold px-2 py-1 rounded-pill"
+                [ngClass]="{
+                  'bg-success text-white': +equipment.available > 0,
+                  'bg-danger text-white': +equipment.available === 0
+                }"
+              >
+                {{ equipment.available }}
+              </span>
+            </p>
+          </div>
+
+          <!-- Bouton de réservation -->
+          <div class="mt-3 text-end">
+            <button 
+              class="btn btn-sm"
+              [ngClass]="{
+                'btn-outline-warning': +equipment.available > 0,
+                'btn-secondary disabled': +equipment.available === 0
+              }"
+              [disabled]="+equipment.available === 0"
+              (click)="openReservationForm(equipment._id)">
+              Réserver
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Message si aucun équipement -->
+    <div class="row" *ngIf="equipments.length === 0">
+      <div class="col text-center">
+        <p class="text-muted">Aucun équipement disponible.</p>
+      </div>
+    </div>
+  </div>
+</div>

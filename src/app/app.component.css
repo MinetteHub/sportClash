@@ -1,0 +1,26 @@
+.scroll-container {
+  height: 100vh; /* Prend toute la hauteur de l'écran */
+  overflow-y: auto; /* Active le défilement vertical si le contenu dépasse */
+  
+  /* Styles optionnels pour améliorer l'apparence */
+  scroll-behavior: smooth; /* Défilement doux */
+  -webkit-overflow-scrolling: touch; /* Défilement fluide sur iOS */
+}
+
+/* Personnalisation de la barre de défilement (optionnel) */
+.scroll-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

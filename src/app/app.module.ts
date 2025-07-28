@@ -8,10 +8,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { PostComponent } from './post/post.component';
 import { EquipmentsComponent } from './equipments/equipments.component';
 import { BlogComponent } from './blog/blog.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import { AboutComponent } from './about/about.component';
-import { EventsclubComponent } from './eventsclub/eventsclub.component'
+import { EventsclubComponent } from './eventsclub/eventsclub.component';
+
+import { RegisterComponent } from './auth/register/register.component';
+import { LoginComponent } from './auth/login/login.component';
+import { VerifyEmailComponent } from './auth/verify-email/verify-email.component';
+import { ReclamationComponent } from './reclamation/reclamation.component';
+import { ProfileComponent } from './profile/profile.component'
+
 
 
 @NgModule({
@@ -24,13 +31,25 @@ import { EventsclubComponent } from './eventsclub/eventsclub.component'
     EquipmentsComponent,
     BlogComponent,
     AboutComponent,
-    EventsclubComponent
+    EventsclubComponent,
+
+    RegisterComponent,
+    LoginComponent,
+    VerifyEmailComponent,
+    ReclamationComponent,
+    ProfileComponent
+
+    AjoutReservationComponent,
+    MyhomeComponent,
+    UpdateReservationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
