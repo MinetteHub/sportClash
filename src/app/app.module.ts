@@ -11,8 +11,11 @@ import { BlogComponent } from './blog/blog.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import { AboutComponent } from './about/about.component';
-import { EventsclubComponent } from './eventsclub/eventsclub.component'
-
+import { EventsclubComponent } from './eventsclub/eventsclub.component';
+import { AjoutReservationComponent } from './ajout-reservation/ajout-reservation.component'
+import { ReactiveFormsModule } from '@angular/forms';
+import { MyhomeComponent } from './myhome/myhome.component';
+import { UpdateReservationComponent } from './update-reservation/update-reservation.component';
 
 @NgModule({
   declarations: [
@@ -24,13 +27,17 @@ import { EventsclubComponent } from './eventsclub/eventsclub.component'
     EquipmentsComponent,
     BlogComponent,
     AboutComponent,
-    EventsclubComponent
+    EventsclubComponent,
+    AjoutReservationComponent,
+    MyhomeComponent,
+    UpdateReservationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

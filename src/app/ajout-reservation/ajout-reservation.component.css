@@ -1,0 +1,21 @@
+/* Gère le positionnement par rapport à la navbar */
+.container {
+  margin-top: 80px; /* adapte selon la hauteur de ta navbar */
+}
+
+/* Rendre scrollable si le formulaire dépasse */
+.container {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* Responsive pour mobile */
+@media (max-width: 768px) {
+  .form-control, .btn {
+    font-size: 14px;
+  }
+
+  .btn {
+    padding: 0.4rem 1rem;
+  }
+}

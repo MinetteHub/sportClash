@@ -1,0 +1,46 @@
+<div style="height: 100px;"></div> 
+<div class="container bg-light border rounded p-3 shadow mt-2" style="max-height: 80vh; overflow-y: auto;">
+<div class="container bg-light border rounded p-3 shadow mt-5" style="max-height: 80vh; overflow-y: auto;">
+    <div class="container mt-4">
+  <h2>Modifier la réservation</h2>
+  <form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">
+   <div class="mb-3">
+  <label for="equipmentId" class="form-label">ID Équipement</label>
+  <input type="text" class="form-control" formControlName="equipmentId" id="equipmentId" />
+</div>
+
+
+    <div class="mb-3">
+      <label for="eventId" class="form-label">ID Événement</label>
+      <input type="text" class="form-control" formControlName="eventId" id="eventId" />
+    </div>
+
+    <div class="mb-3">
+      <label for="reservedBy" class="form-label">Réservé par</label>
+      <input type="text" class="form-control" formControlName="reservedBy" id="reservedBy" />
+    </div>
+
+    <div class="mb-3">
+      <label for="quantity" class="form-label">Quantité</label>
+      <input type="number" class="form-control" formControlName="quantity" id="quantity" />
+    </div>
+
+    <div class="mb-3">
+      <label for="reservationDate" class="form-label">Date</label>
+      <input type="date" class="form-control" formControlName="reservationDate" id="reservationDate" />
+    </div>
+
+<div class="mb-3">
+  <label for="status" class="form-label">Statut</label>
+  <select class="form-control" formControlName="status" id="status">
+    <option value="" disabled selected>Choisissez un statut</option>
+    <option value="PENDING">PENDING</option>
+    <option value="CONFIRMED">CONFIRMED</option>
+    <option value="CANCELLED">CANCELLED</option>
+  </select>
+</div>
+
+
+    <button type="submit" class="btn btn-primary">Mettre à jour</button>
+  </form>
+</div>
